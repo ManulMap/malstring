@@ -13,7 +13,7 @@ int main() {
 }
 ```
 
-[godbolt](https://godbolt.org/z/hPYEnjn3s)
+[https://godbolt.org/z/hPYEnjn3s](https://godbolt.org/z/hPYEnjn3s)
 
 This method is useful if you want to generate PIC code without using an .rdata section to store strings, or simply hide strings from static string search tools.
 
@@ -35,7 +35,7 @@ For each string it is possible to use its own XOR key.
 	pm2.EncryptDecrypt();
 ```
 
-[godbolt stack string](https://godbolt.org/z/dGePWeoaa)
+[https://godbolt.org/z/dGePWeoaa](https://godbolt.org/z/dGePWeoaa)
 
 
 ## Call Strings
@@ -82,7 +82,7 @@ int main() {
 }
 ```
 gcc optimizes all calls, so optimization must be disabled. Msvc works well even with optimization enabled.
-[call string unconv](https://godbolt.org/z/4TGso8heb)
+[https://godbolt.org/z/4TGso8heb](https://godbolt.org/z/4TGso8heb)
 
 
 My library also provides the ability to create XOR-encrypted call strings in a much more convenient way.
@@ -99,7 +99,7 @@ My library also provides the ability to create XOR-encrypted call strings in a m
 	cs2.EncryptDecrypt();
 
 ```
-[call string conv](https://godbolt.org/z/8n49Knov3)
+[https://godbolt.org/z/8n49Knov3](https://godbolt.org/z/8n49Knov3)
 
 ## Call Array
 
