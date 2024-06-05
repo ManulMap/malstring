@@ -7,9 +7,9 @@ Probably you already know the following code will force runtime construction of 
 #include <cstdio>
 
 int main() {
-    char stack_string[] = {'S', 't', 'a', 'c', 'k', ' ', 's', 't', 'r', 'i', 'n', 'g', '\0'};
-
-    printf(stack_string);
+	char stack_string[] = {'S', 't', 'a', 'c', 'k', ' ', 's', 't', 'r', 'i', 'n', 'g', '\0'};
+	
+	printf(stack_string);
 }
 ```
 
@@ -68,17 +68,16 @@ NOINLINE char SymNULL() {
 	return '\0';
 }
 
-
 int main() {
-    char Hello[6];
-    Hello[0] = SymH();
+	char Hello[6];
+	Hello[0] = SymH();
 	Hello[1] = SymE();
 	Hello[2] = SymL();
 	Hello[3] = SymL();
 	Hello[4] = SymO();
 	Hello[5] = SymNULL();
     
-    printf("%s\n", Hello);
+	printf("%s\n", Hello);
 }
 ```
 gcc optimizes all calls, so optimization must be disabled. Msvc works well even with optimization enabled.
@@ -88,15 +87,15 @@ gcc optimizes all calls, so optimization must be disabled. Msvc works well even 
 My library also provides the ability to create XOR-encrypted call strings in a much more convenient way.
 
 ```c++
-    CallString<"Null-terminated Call String", RAND()> cs;
-	cs.EncryptDecrypt(); // don't forget to decrypt the string before using it
-	printf(cs.Buf);
-	cs.EncryptDecrypt(); // encrypt again after use
+CallString<"Null-terminated Call String", RAND()> cs;
+cs.EncryptDecrypt(); // don't forget to decrypt the string before using it
+printf(cs.Buf);
+cs.EncryptDecrypt(); // encrypt again after use
 
-    CallString<"Call String without null terminator", RAND()> cs2;
-	cs2.EncryptDecrypt();
-	printf(cs2.Buf);
-	cs2.EncryptDecrypt();
+CallString<"Call String without null terminator", RAND()> cs2;
+cs2.EncryptDecrypt();
+printf(cs2.Buf);
+cs2.EncryptDecrypt();
 
 ```
 [https://godbolt.org/z/8n49Knov3](https://godbolt.org/z/8n49Knov3)
@@ -126,7 +125,7 @@ int main()
 	memcpy(alloc, calc.Buf, sizeof(calc));
 	
 	((void (*)())alloc)();
-
+	
 	calc.EncryptDecrypt();
 }
 
@@ -137,15 +136,13 @@ You can even pass hex string instead of constexpr array.
 ``` c++
 int main()
 {
-
-
 	CallArrayFromHex<"53 56 57 55 54 58 66 83 E4 F0 50 6A 60 5A 68 63 61 6C "
-	                 "63 54 59 48 29 D4 65 48 8B 32 48 8B 76 18 48 8B 76 10 48 AD "
-	                 "48 8B 30 48 8B 7E 30 03 57 3C 8B 5C 17 28 8B 74 1F 20 48 01 FE 8B 54 "
-	                 "1F 24 0F B7 2C 17 8D 52 02 AD 81 3C 07 57 69 6E 45 75 EF 8B 74 1F 1C "
-	                 "48 01 FE 8B 34 AE 48 01 F7 99 FF D7 48 83 C4 68 5C 5D 5F 5E 5B 0C "
-	                 "CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC", RAND()> calc;
-
+			 "63 54 59 48 29 D4 65 48 8B 32 48 8B 76 18 48 8B 76 10 48 AD "
+			 "48 8B 30 48 8B 7E 30 03 57 3C 8B 5C 17 28 8B 74 1F 20 48 01 FE 8B 54 "
+			 "1F 24 0F B7 2C 17 8D 52 02 AD 81 3C 07 57 69 6E 45 75 EF 8B 74 1F 1C "
+			 "48 01 FE 8B 34 AE 48 01 F7 99 FF D7 48 83 C4 68 5C 5D 5F 5E 5B 0C "
+			 "CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC", RAND()> calc;
+	
 	calc.EncryptDecrypt();
 	
 	const auto alloc = VirtualAlloc(0, sizeof(calc), MEM_COMMIT, PAGE_EXECUTE_READWRITE);
@@ -153,7 +150,7 @@ int main()
 	memcpy(alloc, calc.Buf, sizeof(calc));
 	
 	((void (*)())alloc)();
-
+	
 	calc.EncryptDecrypt();
 }
 
