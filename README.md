@@ -25,14 +25,14 @@ For each string it is possible to use its own XOR key.
 
 ```c++
 StackString<"Null-terminated Stack String", RAND()> ss;
-pm.EncryptDecrypt(); // don't forget to decrypt the string before using it
+ss.EncryptDecrypt(); // don't forget to decrypt the string before using it
 std::cout << ss.Buf << '\n';
-pm.EncryptDecrypt(); // encrypt again after use
+ss.EncryptDecrypt(); // encrypt again after use
 
 StackString<"Stack String without null terminator", RAND(), false> ss2;
-pm2.EncryptDecrypt();
+ss2.EncryptDecrypt();
 std::cout << ss2.Buf << '\n';
-pm2.EncryptDecrypt();
+ss2.EncryptDecrypt();
 ```
 
 [https://godbolt.org/z/dGePWeoaa](https://godbolt.org/z/dGePWeoaa)
